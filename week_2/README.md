@@ -1,1 +1,1 @@
-[Challenge Week 1: Deodorant Evaporator](https://www.codewars.com/kata/5506b230a11c0aeab3000c1f) 
+[Challenge Week 2: Does My Number Look Big In This](https://www.codewars.com/kata/does-my-number-look-big-in-this/train/ruby)
