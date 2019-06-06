@@ -6,5 +6,5 @@ Filename should be in the form: `wk#_person_challenge` i.e. `wk1_mills_deoderant
 Place file in the directory for the challenge
 
 ### Challenges:
-- [Week 1](https://www.codewars.com/kata/5506b230a11c0aeab3000c1f) 
-- [Week 2](https://www.codewars.com/kata/does-my-number-look-big-in-this/train/ruby)
+- [Week 1: Deodorant Evaporator](https://www.codewars.com/kata/5506b230a11c0aeab3000c1f) 
+- [Week 2: Does My Number Look Big In This](https://www.codewars.com/kata/does-my-number-look-big-in-this/train/ruby)
