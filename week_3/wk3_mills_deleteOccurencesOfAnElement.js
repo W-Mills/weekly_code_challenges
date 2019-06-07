@@ -37,3 +37,24 @@ function deleteNth(arr, n) {
 deleteNth([1, 1, 1, 1], 2) // return [1,1]
 
 deleteNth([20, 37, 20, 21], 1) // return [20,37,21]
+
+
+
+// solution using the same logic but written in Ruby:
+
+def delete_nth(array, n)
+  count = {}
+  new_arr = []
+
+  array.each do |num|
+    if !count[num]
+      new_arr.push(num)
+      count[num] = 1
+    elsif count[num] < n
+      new_arr.push(num)
+      count[num] += 1
+    end
+  end
+
+  new_arr
+end
