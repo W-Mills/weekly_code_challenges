@@ -22,6 +22,7 @@ function deleteNth(arr, n) {
 
   for (let i = 0; i < arr.length; i += 1) {
     let num = arr[i];
+    
     if (!count[num]) {
       count[num] = 1;
       newList.push(num);
