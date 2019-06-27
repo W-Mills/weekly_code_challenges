@@ -29,21 +29,30 @@
 // - return the new re-organized array 
 
 
-function dataReverse(data) {
-  const reversed = [];
-  let sliceStart = data.length - 8;
+// function dataReverse(data) {
+//   const reversed = [];
+//   let sliceStart = data.length - 8;
 
-  for (i = data.length; sliceStart >= 0; i -= 8) {
-    reversed.push(...data.slice(sliceStart, i));
-    sliceStart -= 8;
-  }
+//   for (i = data.length; sliceStart >= 0; i -= 8) {
+//     reversed.push(...data.slice(sliceStart, i));
+//     sliceStart -= 8;
+//   }
 
-  return reversed;
-}
+//   return reversed;
+// }
+
+const dataReverse = array =>
+  array
+    .join("")
+    .match(/\d{8}/g)
+    .reverse()
+    .join("")
+    .split("")
+    .map(Number);
 
 // test cases:
 
-dataReverse([1,2,3,4,5,6,7,8,1,1,1,1,1,1,1,1]); // [1,1,1,1,1,1,1,1,1,2,3,4,5,6,7,8]
-dataReverse([1,2,3,4,5,6,7,8,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2]); // [2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,2,3,4,5,6,7,8]
+// console.log(dataReverse([1,2,3,4,5,6,7,8,1,1,1,1,1,1,1,1])); // [1,1,1,1,1,1,1,1,1,2,3,4,5,6,7,8]
+console.log(dataReverse([1,2,3,4,5,6,7,8,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2])); // [2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,2,3,4,5,6,7,8]
 
 // More info: input will always be a multiple of 8
