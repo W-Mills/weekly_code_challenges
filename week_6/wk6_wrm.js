@@ -15,22 +15,22 @@ Clarifying Questions:
       - A 'redundant pair' is when one direction is followed by its opposite
   
 Approach:
-  - Recursion with a "changes" tracker that IF > zero => recursively calls the function
+  - Recursion with a "changes" tracker that IF true => recursively calls the function
 
 Data Structure: 
-  - 
+  - Mutating the original array
 
 Algorithm: 
-  - create an object with key-value pairs of opposites
-  - Create an array to track the changes to make on current iteration
-  - Use a for loop to iterate over the list of directions from beginning to end:
+  - Create an object with key-value pairs of opposites
+  - Create a boolean to track if changes were made (initialize to false)
+  - Use forEach to iterate over the list of directions from beginning to end:
     - IF the next index is an "opposites" pair (by checking reference object)
-      - log that a change occured
-      - splice out both values => (will it break to modify input array while iterating over it? => nope, not with a for loop)
-  - IF (changes array !empty) {
-    recursively call diReduc with the current status of the directions array
+      - re-assign changes to true
+      - splice out both values => (will it break to modify input array while iterating over it? => nope)
+  - IF (changes were made (is true)) {
+    recursively call dirReduc with the current state of the directions array
   } 
-    - ELSE: return the directions
+    - ELSE: return the directions array 
 */ 
 
 //Code:
