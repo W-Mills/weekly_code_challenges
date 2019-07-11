@@ -27,10 +27,17 @@ Data Structure:
 
 Algorithm: 
   - INIT an object to hold result frequency
-  - Iterate over the array of frequency changes from the beginning
+  - INIT a found variable to false
+  - INIT a currentTotal variable to 0 to track the current total
+  - INIT an i variable to keep track of current iteration index
+  - Iterate over the array of frequency changes from the beginning using a while loop
     - For each step:
-      - IF: the object has that value as a key: stop iteration and return that value 
+      - IF: the object seen has that value as a key: stop iteration and return that value 
       - ELSE: add that value to the object as a key with a value of 1
+      
+      - IF: no duplicate has been found after iterating through all data numbers once
+        - reset iteration to index 0 of data (but keeping the seen tracker object)
+      - ELSE: increment iterating index += 1
 */ 
 
 //Code:
