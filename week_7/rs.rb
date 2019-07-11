@@ -2,7 +2,7 @@ require 'pry'
 require 'set'
 # Part 1 - working solution
 
-input = File.read('./day1_raw.txt')
+input = File.read('./rs_input.txt')
 
 directions = input.split("\n").map { |direction| direction.to_i }
 
