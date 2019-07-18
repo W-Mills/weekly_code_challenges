@@ -1,20 +1,33 @@
 frequencies = File.read("wk7_mdr_input.txt")
 frequencies = frequencies.split(/\s/).map(&:to_i)
 
-net_frequency = 0
-net_frequency_log = [0]
-first_repeated_frequency = nil
+first_net_frequency = 0
+net_frequency_log = {0=>true}
 
-loop do
-  frequencies.each do |frequency|
-    net_frequency += frequency
-    if net_frequency_log.include?(net_frequency)
-      first_repeated_frequency = net_frequency
-      break
+def find_first_repeat_frequency(input_frequencies, net_frequency, log)
+  loop do
+    input_frequencies.each do |frequency|
+      net_frequency += frequency
+
+      return(net_frequency) if log[net_frequency]
+
+      log[net_frequency] = true
     end
-    net_frequency_log << net_frequency
   end
-  break if first_repeated_frequency
 end
 
-first_repeated_frequency
+p find_first_repeat_frequency(frequencies, first_net_frequency, net_frequency_log)
+
+# loop do
+#   frequencies.each do |frequency|
+#     net_frequency += frequency
+#     if net_frequency_log.include?(net_frequency)
+#       first_repeated_frequency = net_frequency
+#       break
+#     end
+#     net_frequency_log << net_frequency
+#   end
+#   break if first_repeated_frequency
+# end
+
+# p first_repeated_frequency
