@@ -7,11 +7,7 @@ input = File.read('./rs_input.txt')
 directions = input.split("\n").map { |direction| direction.to_i }
 
 # def frequency_finder(array)
-#   sum = 0
-
-#   array.each { |direction| sum += direction }
-
-#   sum
+#   array.sum
 # end
 
 # p frequency_finder(directions) == 500
@@ -26,16 +22,20 @@ directions = input.split("\n").map { |direction| direction.to_i }
 # def frequency_finder(array)
 #   sum = 0
 #   frequencies = [0]
-#   count = 0
+#   found = false
 
 #   loop do
 #     array.each do |direction| 
 #       sum += direction
 #       frequencies << sum
-#       break if frequencies.count(sum) == 2
+
+#       if frequencies.count(sum) == 2
+#         found = true
+#         break
+#       end
+
 #     end
-#     count += 1
-#     break if frequencies.count(sum) == 2
+#     break if found
 #   end
 
 #   frequencies[-1]
@@ -63,8 +63,8 @@ def frequency_finder(array)
   sum
 end
 
-p frequency_finder([1, -1]) #== 0
-p frequency_finder([3, 3, 4, -2, -4]) #== 10
-p frequency_finder([-6, 3, 8, 5, -6]) #== 5
-p frequency_finder([7, 7, -2, -7, -4]) #== 14
+p frequency_finder([1, -1]) == 0
+p frequency_finder([3, 3, 4, -2, -4]) == 10
+p frequency_finder([-6, 3, 8, 5, -6]) == 5
+p frequency_finder([7, 7, -2, -7, -4]) == 14
 p frequency_finder(directions)
