@@ -10,13 +10,6 @@ box_ids.each do |box_id|
 
   total_repeats[:pairs] += 1 if box_char_count.values.include?(2)
   total_repeats[:triplets] += 1 if box_char_count.values.include?(3)
-
-
-  # box_char_count.values.each do |frequency|
-  #   total_repeats[:pairs] += 1 if frequency == 2
-  #   total_repeats[:triplets] += 1 if frequency == 3
-  # end
-
 end
 
-p total_repeats[:pairs] * total_repeats[:triplets]
+total_repeats[:pairs] * total_repeats[:triplets]
