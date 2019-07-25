@@ -141,7 +141,7 @@ function findPrototypeFabric(data) {
         }
 
         if (k === currentString.length - 1 && differences === 1) {
-          return similarChars([currentString, compareString]);
+          return similarChars(currentString, compareString);
         }
       }
     }
@@ -150,8 +150,7 @@ function findPrototypeFabric(data) {
   return false;
 }
 
-function similarChars(almostMatches) { 
-  const [first, second] = [almostMatches[0], almostMatches[1]];
+function similarChars(first, second) { 
   let finalString = "";
 
   for (let i = 0; i < first.length; i += 1) {
