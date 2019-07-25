@@ -126,36 +126,37 @@ Algorithm:
 //Code:
 
 function findPrototypeFabric(data) {
-  let currentString = '';
+  for (let i = 0; i < data.length - 1; i += 1) {
+    let currentString = data[i];
+    
+    for (let j = 0; j < data.length - 1; j += 1) {
+      let compareString = data[j];
+      let differences = 0;
 
-    for (let i = 0; i < data.length - 1; i += 1) {
-      let currentString = data[i];
-      
-      for (let j = 0; j < data.length - 1; j += 1) {
-        let compareString = data[j];
-        let differences = 0;
+      for (let k = 0; k < currentString.length; k += 1) {
+        let char = currentString[k];
+        
+        if (compareString[k] !== char) {
+          differences += 1;
+        }
 
-        for (let k = 0; k < currentString.length; k += 1) {
-          let char = currentString[k];
-          
-          if (compareString[k] !== char) { differences += 1; }
-          if (k === currentString.length - 1 && differences === 1) {
-            return similarChars([currentString, compareString]);
-          }
+        if (k === currentString.length - 1 && differences === 1) {
+          return similarChars([currentString, compareString]);
         }
       }
     }
+  }
 
   return false;
 }
 
 function similarChars(almostMatches) { 
-  let finalString = '';
-  let first = almostMatches[0];
-  let second = almostMatches[1];
+  const [first, second] = [almostMatches[0], almostMatches[1]];
+  let finalString = "";
 
   for (let i = 0; i < first.length; i += 1) {
     let char = first[i];
+    
     if (char === second[i]) {
       finalString += char;
     }
