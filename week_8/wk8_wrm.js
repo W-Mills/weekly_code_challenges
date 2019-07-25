@@ -1,4 +1,7 @@
 /*
+
+Part 1:
+
 Input: an array of strings
 Output: a number
 
@@ -75,8 +78,6 @@ function findTriples(counts) {
       return true;
     }
   }
-  
-  return false;
 }
 
 function findDoubles(counts) {
@@ -85,8 +86,82 @@ function findDoubles(counts) {
       return true;
     }
   }
-  
-  return false;
 }
 
 console.log(findChecksum(data));
+
+/*
+Part 2: 
+
+Input: An array of strings
+Output: a string, the common chars of the two strings that only differ by one char
+
+Problem: 
+  - Take an array of strings
+    - find the two strings that only differ by one char
+    - return the common chars (remove the one char that is different)
+
+Clarifying Questions: 
+  - 
+
+Data Structure: 
+  - Array of strings
+
+Algorithm: 
+  - Iterate over the array of strings
+    - WHILE (foundMatches = false)
+    - for each (currentString), iterate over the input data of all strings
+      - INIT differences to 0
+      - IF at the same index, they have different chars
+        - differences += 1
+        If differences === 1 => foundMatches = true (return foundMatches)
+
+  - iterate over foundMatches from index 0 to length - 1
+    - if at same index char === char
+     - finalString += char
+  - return finalString
+*/ 
+
+//Code:
+
+function findPrototypeFabric(data) {
+  let currentString = '';
+
+    for (let i = 0; i < data.length - 1; i += 1) {
+      let currentString = data[i];
+      
+      for (let j = 0; j < data.length - 1; j += 1) {
+        let compareString = data[j];
+        let differences = 0;
+
+        for (let k = 0; k < currentString.length; k += 1) {
+          let char = currentString[k];
+          
+          if (compareString[k] !== char) { differences += 1; }
+          if (k === currentString.length - 1 && differences === 1) {
+            return similarChars([currentString, compareString]);
+          }
+        }
+      }
+    }
+
+  return false;
+}
+
+function similarChars(almostMatches) { 
+  let finalString = '';
+  let first = almostMatches[0];
+  let second = almostMatches[1];
+
+  for (let i = 0; i < first.length; i += 1) {
+    let char = first[i];
+    if (char === second[i]) {
+      finalString += char;
+    }
+  }
+
+  return finalString;
+}
+
+//Test Cases: 
+console.log(findPrototypeFabric(data));
