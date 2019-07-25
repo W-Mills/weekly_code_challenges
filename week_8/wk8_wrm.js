@@ -88,7 +88,7 @@ function findDoubles(counts) {
   }
 }
 
-console.log(findChecksum(data));
+console.log(findChecksum(data)); // 4712
 
 /*
 Part 2: 
@@ -109,13 +109,14 @@ Data Structure:
 
 Algorithm: 
   - Iterate over the array of strings
-    - WHILE (foundMatches = false)
     - for each (currentString), iterate over the input data of all strings
       - INIT differences to 0
       - IF at the same index, they have different chars
         - differences += 1
-        If differences === 1 => foundMatches = true (return foundMatches)
+        IF after iterating through all chars of string, differences === 1 
+          => return foundMatches)
 
+  Helper function:
   - iterate over foundMatches from index 0 to length - 1
     - if at same index char === char
      - finalString += char
@@ -164,4 +165,4 @@ function similarChars(almostMatches) {
 }
 
 //Test Cases: 
-console.log(findPrototypeFabric(data));
+console.log(findPrototypeFabric(data)); // "lufjygedpvfbhftxiwnaorzmq"
