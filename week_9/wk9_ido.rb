@@ -140,4 +140,4 @@ end
 
 fabric_map = initialize_fabric_map(1000, false)
 log_all_claim_ids_on_fabric_map!(claims, fabric_map)
-p claims.reject { |claim| claim[:overlap] }
+p claims.reject { |claim| claim[:overlap] }[0][:id]
