@@ -43,12 +43,13 @@ def convert_claim_to_hash(claim_string)
     left: split_claim[2].split(',')[0].to_i,
     top: split_claim[2].split(',')[1].to_i,
     width: split_claim[3].split('x')[0].to_i,
-    length: split_claim[3].split('x')[1].to_i
+    length: split_claim[3].split('x')[1].to_i,
+    overlap: false
   }
 end
 
-def initialize_fabric_map(square_size)
-  square_size.times.map { |_| Array.new(square_size, 0) }
+def initialize_fabric_map(square_size, initial_value)
+  square_size.times.map { |_| Array.new(square_size, initial_value) }
 end
 
 def log_claim_on_fabric_map!(claim, fabric_map)
@@ -77,15 +78,6 @@ def get_inches_with_multiple_claims(fabric_map)
   sum
 end
 
-FILE_PATH = './wk9_ido_input.txt'
-raw_claim_array = convert_input_to_array(FILE_PATH)
-claims = convert_claim_array_to_hash_array(raw_claim_array)
-
-fabric_map = initialize_fabric_map(1001)
-
-log_all_claims_on_fabric_map!(claims, fabric_map)
-puts get_inches_with_multiple_claims(fabric_map)
-
 # TEST
 # claim = {
 #   id: 123,
@@ -95,9 +87,57 @@ puts get_inches_with_multiple_claims(fabric_map)
 #   length: 4
 # }
 
-# fabric_map = initialize_fabric_map(11)
+# fabric_map = initialize_fabric_map(11, 0)
 # log_claim_on_fabric_map!(claim, fabric_map)
 
 # fabric_map.each do |row|
 #   p row
 # end
+
+FILE_PATH = './wk9_ido_input.txt'
+raw_claim_array = convert_input_to_array(FILE_PATH)
+claims = convert_claim_array_to_hash_array(raw_claim_array)
+
+fabric_map = initialize_fabric_map(1000, 0)
+
+log_all_claims_on_fabric_map!(claims, fabric_map)
+puts get_inches_with_multiple_claims(fabric_map)
+
+# PART 2
+#   P
+#     I: an empty fabric map & an array of claim hashes
+#     O: the claim id of the claim which doesn't overlap with any other claims.
+#   E
+#   D
+#     A nested array representing the claimed coordinates
+#   A
+#     For each claim in the claims array
+#       For each coordinate in the claim
+#         If the coordinate hasn't been claimed, set it equal to the claim id
+#         If the coordinate has been claimed, mark both the claim that claimed it
+#           and the current claim as "duplicate"
+#     Return the claim id of the claim that hasn't been marked as duplicate
+
+def log_claim_id_on_fabric_map!(claim, fabric_map, claims)
+  claim[:left].upto(claim[:left] + claim[:width] - 1) do |x|
+    claim[:top].upto(claim[:top] + claim[:length] - 1) do |y|
+      if fabric_map[y][x]
+        claim[:overlap] = true
+        previous_claim = claims.find { |old_claim| old_claim[:id] == fabric_map[y][x] }
+        previous_claim[:overlap] = true
+      else
+        fabric_map[y][x] = claim[:id]
+      end
+    end
+  end
+end
+
+def log_all_claim_ids_on_fabric_map!(claims, fabric_map)
+  claims.each do |claim|
+    log_claim_id_on_fabric_map!(claim, fabric_map, claims)
+  end
+end
+
+fabric_map = initialize_fabric_map(1000, false)
+log_all_claim_ids_on_fabric_map!(claims, fabric_map)
+p claims.reject { |claim| claim[:overlap] }
