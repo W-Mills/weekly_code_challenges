@@ -34,7 +34,6 @@ def common_chars(array)
 
     loop do
       check = array[index_chk]
-      next if target == check
       index = 0
       diff_count = 0
         loop do
