@@ -64,7 +64,7 @@ function newCloth() {
   return cloth;
 }
 
-function findMultiClaims(cloth) {
+function tallyMultipleClaims(cloth) {
   let rowCount;
   let counter = (count, square) => {
     return (square.length >= 2) ? count + 1 : count;
@@ -80,29 +80,18 @@ function findMultiClaims(cloth) {
 
 function findFreeClaim(cloth, claimsList) {
   let freeClaim;
-  let leftPos;
-  let topPos;
-  let width;
-  let height;
-  let i;
-  let j;
+  let findOverlaps = function(j, i, cloth) {
+    if (cloth[j][i].length > 1) return true;
+  }
 
   freeClaim = claimsList.filter(function(claimData) {
-    [leftPos, topPos, width, height] = claimData.slice(1);
-
-    for (i = leftPos; i < leftPos + width; i += 1) {
-      for (j = topPos; j < topPos + height; j += 1) {
-       if (cloth[j][i].length > 1) return false;
-      }
-    }
-
-    return true;
+    return eachSquare(cloth, claimData, findOverlaps) ? false : true;
   });
 
   return freeClaim[0];
 }
 
-function inspectClaims(claimsList) {
+function eachSquare(cloth, claimData, fx) {
   let claimId;
   let leftPos;
   let topPos;
@@ -110,25 +99,37 @@ function inspectClaims(claimsList) {
   let height;
   let i;
   let j;
-  let cloth = newCloth();
+  let result;
 
-  claimsList = claimsList.map(parseClaim);
+  [claimId, leftPos, topPos, width, height] = claimData;
 
+  for (i = leftPos; i < leftPos + width; i += 1) {
+    for (j = topPos; j < topPos + height; j += 1) {
+      result = fx(j, i, cloth, claimId);
+      if (result !== undefined) return result;
+    }
+  }
+}
+
+function addClaimsToCloth(cloth, claimsList) {
   claimsList.forEach(function(claimData) {
-    [claimId, leftPos, topPos, width, height] = claimData;
-
-    for (i = leftPos; i < leftPos + width; i += 1) {
-      for (j = topPos; j < topPos + height; j += 1) {
+    eachSquare(cloth, claimData, function(j, i, cloth, claimId) {
         if (cloth[j][i]) {
           cloth[j][i].push(claimId)
         } else {
           cloth[j][i] = [claimId];
         }
-      }
-    }
+    })
   })
+}
 
-  console.log(findMultiClaims(cloth));
+function inspectClaims(claimsList) {
+  let cloth = newCloth();
+  claimsList = claimsList.map(parseClaim);
+
+  addClaimsToCloth(cloth, claimsList)
+
+  console.log(tallyMultipleClaims(cloth));
   console.log(findFreeClaim(cloth, claimsList));
 }
 
