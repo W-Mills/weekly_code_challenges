@@ -64,7 +64,7 @@ function newCloth() {
   return cloth;
 }
 
-function inspectClaims(cloth) {
+function findMultiClaims(cloth) {
   let rowCount;
   let counter = (count, square) => {
     return (square.length >= 2) ? count + 1 : count;
@@ -80,7 +80,6 @@ function inspectClaims(cloth) {
 
 function findFreeClaim(cloth, claimsList) {
   let freeClaim;
-  let claimId;
   let leftPos;
   let topPos;
   let width;
@@ -89,7 +88,7 @@ function findFreeClaim(cloth, claimsList) {
   let j;
 
   freeClaim = claimsList.filter(function(claimData) {
-    [claimId, leftPos, topPos, width, height] = claimData;
+    [leftPos, topPos, width, height] = claimData.slice(1);
 
     for (i = leftPos; i < leftPos + width; i += 1) {
       for (j = topPos; j < topPos + height; j += 1) {
@@ -103,7 +102,7 @@ function findFreeClaim(cloth, claimsList) {
   return freeClaim[0];
 }
 
-function multiClaims(claimsList) {
+function inspectClaims(claimsList) {
   let claimId;
   let leftPos;
   let topPos;
@@ -122,7 +121,6 @@ function multiClaims(claimsList) {
       for (j = topPos; j < topPos + height; j += 1) {
         if (cloth[j][i]) {
           cloth[j][i].push(claimId)
-          claimOverlap = true;
         } else {
           cloth[j][i] = [claimId];
         }
@@ -130,10 +128,9 @@ function multiClaims(claimsList) {
     }
   })
 
-  console.log(inspectClaims(cloth));
+  console.log(findMultiClaims(cloth));
   console.log(findFreeClaim(cloth, claimsList));
 }
 
-
-let claims = parseFile('2018_3_input.txt');
-multiClaims(claims);
+let claims = parseFile('maxhawk_input.txt');
+inspectClaims(claims);
