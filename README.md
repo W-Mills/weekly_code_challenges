@@ -14,6 +14,7 @@ Place file in the directory for the challenge
 - [Week 4: Counting Duplicates](https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1)
 - [Week 5: Data Reverse](https://www.codewars.com/kata/data-reverse/javascript)
 - [Week 6: Directions Reduction](https://www.codewars.com/kata/550f22f4d758534c1100025a), or 'How I crossed the desert the smart way'
-- [Week 7: Chronal Calibration](https://adventofcode.com/2018/day/1)
-- [Week 8: Inventory Management System](https://adventofcode.com/2018/day/2)
-- [Week 9: No Matter How You Slice It](https://adventofcode.com/2018/day/3)
+- [Week 7: Advent of Code 2018 day 1 - Chronal Calibration](https://adventofcode.com/2018/day/1)
+- [Week 8: Advent of Code 2018 day 2 - Inventory Management System](https://adventofcode.com/2018/day/2)
+- [Week 9: Advent of Code 2018 day 3 - No Matter How You Slice It](https://adventofcode.com/2018/day/3)
+- [Week 10: Advent of Code 2018 day 4 - Repose Record](https://adventofcode.com/2018/day/4)
