@@ -154,6 +154,7 @@ function analyzeSleep(guardLog, strategy) {
           };
 }
 
+// Begin program
 let eventLog = createEventLog(parseFile('maxhawk_input.txt'));
 eventLog.sort(sortByDateTime);
 let guardLog = createGuardLog(eventLog);
